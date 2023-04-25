@@ -3,7 +3,7 @@ export async function GET(request) {
 }
 
 
-export async function getHero(params) {
+export async function getHero() {
 
   const Cosmic = require('cosmicjs')
   const api = Cosmic()
@@ -21,5 +21,25 @@ export async function getHero(params) {
           hero
       )
 } 
+
+
+export async function getCategories() {
+
+  const Cosmic = require('cosmicjs')
+  const api = Cosmic()
+  const bucket = api.bucket({
+    slug: 'paul-antoine-test-bike-used',
+    read_key: 'wNeMWc1PaiRhCyM4qSVFqTLiuCxu0ZJPFBtNlCv0OIM0eh1iIt'
+  })
+  const caterogies = await bucket.objects.find({
+    type: 'categories'
+  })
+  .props('slug,title,content')
+  .limit(20)
+
+  return (
+    caterogies
+  )
+}
 
 
