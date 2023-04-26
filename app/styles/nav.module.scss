@@ -1,6 +1,18 @@
 .nav {
+    display: flex;
     position: sticky;
     top: 0;
-    
-    background-color: hotpink;
+    background-color: white;
+    border-bottom: 4px solid black;
+    padding: 16px 32px;
+    justify-content: space-between;
+
+}
+
+.containerLink {
+
+    a {
+        line-height: 34px !important;
+        margin-left: 12px;
+    }
 }

@@ -8,17 +8,19 @@ export default function Nav() {
   let categories = use(getCategories())
     return (
       <nav className={styles.nav}>
-       { Object.entries(categories.objects).map((categorie) => {
-        console.log(categorie[1].slug)
-            return (
-              <Categorie
-                key={categorie[1].title}
-                slug={categorie[1].slug}
-                title={categorie[1].title}
-              />
-            )
-          })
+        <h1><a href="/">LOGO</a></h1>
+          <div className={styles.containerLink }>
+          { Object.entries(categories.objects).map((categorie) => {
+                return (
+                  <Categorie className={styles.nav}
+                    key={categorie[1].title}
+                    slug={categorie[1].slug}
+                    title={categorie[1].title}
+                  />
+                )
+              })
           }
-      </nav>
+          </div>
+        </nav>
     )
 }

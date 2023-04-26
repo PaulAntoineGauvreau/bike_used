@@ -28,8 +28,8 @@ export async function getCategories() {
   const Cosmic = require('cosmicjs')
   const api = Cosmic()
   const bucket = api.bucket({
-    slug: 'paul-antoine-test-bike-used',
-    read_key: 'wNeMWc1PaiRhCyM4qSVFqTLiuCxu0ZJPFBtNlCv0OIM0eh1iIt'
+    slug: process.env.COSMIC_BUCKET_SLUG,
+    read_key: process.env.COSMIC_READ_KEY,
   })
   const caterogies = await bucket.objects.find({
     type: 'categories'
@@ -41,5 +41,27 @@ export async function getCategories() {
     caterogies
   )
 }
+
+
+// export async function getBikeCategories(params) {
+
+//   const Cosmic = require('cosmicjs')
+//   const api = Cosmic()
+//   const bucket = api.bucket({
+//     slug: process.env.COSMIC_BUCKET_SLUG,
+//     read_key: process.env.COSMIC_READ_KEY,
+//     })
+//     const data = await bucket.objects.find({
+//     type: 'bikes',
+//     category_type: params.categorie,
+//     })
+//     .props('slug,title,content,metadata')
+
+//     let bikes = {...data}
+
+//     return (
+//         bikes
+//     )
+// }
 
 
