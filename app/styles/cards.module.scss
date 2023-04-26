@@ -1,0 +1,19 @@
+
+.containerCard {
+    display: flex;
+    gap: 32px;
+    justify-content: space-between;
+
+}
+
+.card {
+    flex-basis: calc(100% / 3 - 22px);
+    padding: 16px;
+    border: 1px solid grey;
+    border-radius: 8px;
+    cursor: pointer;
+
+    img {
+        width: 100%;
+    }
+}

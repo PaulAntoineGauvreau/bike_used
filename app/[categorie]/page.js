@@ -1,40 +1,50 @@
 "use client";
 // import {useEffect} from 'react'
-// import {use} from 'react'
-// import { getBikeCategories } from '../api/hello/route'
+import styles from '../styles/cards.module.scss'
+import {use} from 'react'
+import { getBikes } from '../api/hello/route'
 import { useState, useEffect } from 'react'
 
 export default function CategorieDetail({params}) {
-    const [data, setData] = useState([])
+    // const [bikeCat, setBike] = useState('')
 
 
     useEffect(() => {
-        app(params)
+
+   
     }, [params])
 
 
-        // console.log(params.categorie)
-        const Cosmic = require('cosmicjs')
-        const api = Cosmic()
-        const bucket = api.bucket({
-            slug: 'paul-antoine-test-bike-used',
-            read_key: 'wNeMWc1PaiRhCyM4qSVFqTLiuCxu0ZJPFBtNlCv0OIM0eh1iIt'
-        })
 
-       const app = async (params) => {
-        const data = await bucket.objects.find({
-            type: 'bikes',
-            // 'metadata.categorioso' : "gravel"
-            }).props('slug,title,content,metadata')
-            const bikes = data.objects
-            console.log(JSON.stringify(bikes[0].metadata, null, 2))
-       }
+    
+    let bikes = use(getBikes())
+    const filterBikes = bikes.objects.filter(obj => {
+        return obj.metadata.categorioso.slug === params.categorie
+    });
 
     return (
-      
-      <main>
-        {/* {console.log(bikes)} */}
+        
+      <main >
         <h2>{params.categorie}</h2>
+        <div className={styles.containerCard}>
+        { Object.keys(filterBikes).length > 0
+         ?
+         <>
+            { filterBikes.map((bike) => {
+                console.log(bike.metadata.bike_images[0].bike_image.url)
+                return (
+                    <div key={bike.slug} className={styles.card}>
+                        <img src={bike.metadata.bike_images[0].bike_image.url} alt="" />
+                        <h3>{bike.title}</h3>
+                    </div>
+                )
+            })}
+        </>
+        : 
+            <h3>Il n'y pas de vélos dans cette catégorie...</h3>
+        
+        }
+        </div>
       </main>
     )
   }
