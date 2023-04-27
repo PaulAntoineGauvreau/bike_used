@@ -1,3 +1,5 @@
+import "server-only";
+
 export async function GET(request) {
   return new Response('Hello, Next.js!')
 }
@@ -29,7 +31,7 @@ export async function getCategories() {
   const api = Cosmic()
   const bucket = api.bucket({
     slug: process.env.COSMIC_BUCKET_SLUG,
-    read_key: 'wNeMWc1PaiRhCyM4qSVFqTLiuCxu0ZJPFBtNlCv0OIM0eh1iIt'
+    read_key: process.env.COSMIC_READ_KEY,
   })
   const caterogies = await bucket.objects.find({
     type: 'categories'
@@ -48,8 +50,8 @@ export async function getBikes() {
   const Cosmic = require('cosmicjs')
   const api = Cosmic()
   const bucket = api.bucket({
-    slug: 'paul-antoine-test-bike-used',
-    read_key: 'wNeMWc1PaiRhCyM4qSVFqTLiuCxu0ZJPFBtNlCv0OIM0eh1iIt'
+    slug: process.env.COSMIC_BUCKET_SLUG,
+    read_key: process.env.COSMIC_READ_KEY,
   })
   const data = await bucket.objects.find({
     type: 'bikes'

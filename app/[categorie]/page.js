@@ -1,31 +1,22 @@
-"use client";
-// import {useEffect} from 'react'
+
 import styles from '../styles/cards.module.scss'
 import {use} from 'react'
 import { getBikes } from '../api/hello/route'
-import { useState, useEffect } from 'react'
+
+
 
 export default function CategorieDetail({params}) {
-    // const [bikeCat, setBike] = useState('')
-
-
-    useEffect(() => {
-
-   
-    }, [params])
-
-
 
     
     let bikes = use(getBikes())
     const filterBikes = bikes.objects.filter(obj => {
         return obj.metadata.categorioso.slug === params.categorie
     });
-
+    console.log(filterBikes)
     return (
-        
-      <main >
-        <h2>{params.categorie}</h2>
+        <div>
+
+        <h2>{params.categorie}</h2> 
         <div className={styles.containerCard}>
         { Object.keys(filterBikes).length > 0
          ?
@@ -45,6 +36,7 @@ export default function CategorieDetail({params}) {
         
         }
         </div>
-      </main>
+        </div>
+
     )
   }
