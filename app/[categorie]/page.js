@@ -2,6 +2,7 @@
 import styles from '../styles/cards.module.scss'
 import {use} from 'react'
 import { getBikes } from '../api/hello/route'
+import Link from 'next/link'
 
 
 
@@ -22,12 +23,14 @@ export default function CategorieDetail({params}) {
          ?
          <>
             { filterBikes.map((bike) => {
-                console.log(bike.metadata.bike_images[0].bike_image.url)
+                // console.log(bike.metadata.bike_images[0].bike_image.url)
                 return (
-                    <div key={bike.slug} className={styles.card}>
-                        <img src={bike.metadata.bike_images[0].bike_image.url} alt="" />
-                        <h3>{bike.title}</h3>
-                    </div>
+                    <Link href={`/${params.categorie}/${bike.slug}`} className={styles.card}>
+                        <div key={bike.slug} >
+                            <img src={bike.metadata.bike_images[0].bike_image.url} alt="" />
+                            <h3>{bike.title}</h3>
+                        </div>
+                    </Link>
                 )
             })}
         </>
