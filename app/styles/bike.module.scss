@@ -52,10 +52,31 @@
     button {
         max-width: 200px;
         border: black solid 4px;
-        background-color: white;
+        background-color: transparent;
         height: 40px;
         text-transform: uppercase;
         margin-top: 16px;
         font-weight: 700;
+        cursor: pointer;
+        position: relative;
+
+        &::after {
+            content: "";
+            display: block;
+            width: 0%;
+            height: 100%;
+            background-color: black;
+            transition: width 0.3s ease-in;
+            position: absolute;
+            top: 0;
+        }
+
+        &:hover::after{
+            width: 100%;
+        }
+
+        &:hover{
+            color: rgb(224, 30, 30) !important;
+        }
     }
 }

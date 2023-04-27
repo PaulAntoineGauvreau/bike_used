@@ -14,5 +14,10 @@
     a {
         line-height: 34px !important;
         margin-left: 12px;
+        padding-bottom: 2px;
+
+        &:hover {
+            border-bottom: 2px solid black;
+        }
     }
 }
