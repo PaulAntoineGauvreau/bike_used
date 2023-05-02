@@ -1,0 +1,81 @@
+.accordion {
+    --_button-size: 1rem;
+    --_panel-padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border-top: 4px solid black;
+    border-bottom: 4px solid black;
+    margin-top: -4px;
+}
+
+.accordion * {
+    margin: 0;
+    padding: 0;
+}
+
+.accordionPanel {
+    position: relative;
+    isolation: isolate;
+    flex-basis: calc((var(--_button-size) * 2) +  var(--_panel-padding));
+    overflow: hidden;
+    padding: var(--_panel-padding);
+    // border-radius:  calc(((var(--_button-size) * 2) +  var(--_panel-padding)) / 2);
+    transition: flex-basis 500ms ease-in;
+
+    h2 {
+
+        span {
+            font-size: 27px;
+            line-height: 27px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        text-transform: uppercase;
+        button {
+            background-color: transparent;
+            border: 0;
+            cursor: pointer;
+            width: 100%;
+            text-align: left;
+            // background-color: pink;
+
+        }
+    }
+
+    svg {
+        fill: var(--_panel-color);
+        width: var( --_button-size);
+        aspect-ratio: 1/1;
+        padding: .75rem;
+        border-radius: 50%;
+    }
+}
+
+.accordionPanel:has([aria-expanded="true"]) {
+    flex-basis: clamp(15rem, 40vh, 20rem);
+}
+
+.accordionPanel:has([aria-expanded="true"]) p {
+    opacity: 1;
+}
+
+.accordionContent {
+    
+    img {
+        position: absolute;
+        inset: 0;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        z-index: -1;
+    }
+
+    p {
+        transform: translateY(2rem);
+        opacity: 0;
+        transition: opacity 500ms 500ms;
+        max-width: 75ch;
+    }
+}

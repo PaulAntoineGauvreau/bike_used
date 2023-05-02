@@ -59,6 +59,7 @@
         font-weight: 700;
         cursor: pointer;
         position: relative;
+        z-index: 20;
 
         &::after {
             content: "";
@@ -69,6 +70,7 @@
             transition: width 0.3s ease-in;
             position: absolute;
             top: 0;
+            z-index: -1;
         }
 
         &:hover::after{
@@ -76,7 +78,12 @@
         }
 
         &:hover{
-            color: rgb(224, 30, 30) !important;
+            color: white !important;
         }
     }
+}
+
+.containerAccordion {
+    max-width: 800px;
+    margin: 64px auto;
 }

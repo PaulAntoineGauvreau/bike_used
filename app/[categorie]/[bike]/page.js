@@ -1,6 +1,7 @@
 import styles from '../../styles/bike.module.scss'
 import {use} from 'react'
 import { getBike } from '../../api/hello/route'
+import  Accordion  from '../../components/accordion'
 
 export default function Footer(params) {
     let bike = use(getBike(params))
@@ -21,7 +22,15 @@ export default function Footer(params) {
                 <p>Condition {bike.objects[0].metadata.condition.value}</p>
                 <p dangerouslySetInnerHTML={{__html: bike.objects[0].metadata.description}}/>
                 <button>Add to cart</button>
+               
             </div>
+        </div>
+        <div className={styles.containerAccordion}>
+          <Accordion/>
+          <Accordion/>
+          <Accordion/>
+          <Accordion/>
+          <Accordion/>
         </div>
       </div>
     )
